@@ -3,7 +3,7 @@
 
   <groupId>com.sipgate</groupId>
   <artifactId>mp3-wav</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>A simple in memory mp3 to wave converer</name>
@@ -37,7 +37,7 @@
     <connection>scm:git:git@github.com:sipgate/mp3-wav.git</connection>
     <developerConnection>scm:git:git@github.com:sipgate/mp3-wav.git</developerConnection>
     <url>https://github.com/sipgate/mp3-wav</url>
-    <tag>mp3-wav-1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <build>
