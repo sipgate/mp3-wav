@@ -7,7 +7,8 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>A simple in memory mp3 to wave converer</name>
+  <name>mp3-wav</name>
+  <description>A simple in memory mp3 to wave converrer</description>
   <url>https://github.com/sipgate/mp3-wav</url>
 
   <licenses>
