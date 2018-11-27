@@ -1,6 +1,7 @@
 package com.sipgate.mp3wav;
 
-import static com.sipgate.mp3wav.mp3wav.Converter.convertFrom;
+
+import static com.sipgate.mp3wav.Converter.convertFrom;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -18,7 +19,7 @@ public class ConverterTest {
 		) {
 			final AudioFormat audioFormat = new AudioFormat(44100, 8, 1, true, false);
 
-			convertFrom(inputStream).withFormat(audioFormat).to(output);
+			convertFrom(inputStream).withTargetFormat(audioFormat).to(output);
 
 //			Files.write(Paths.get("/tmp/output.wav"), output.toByteArray());
 		} finally {

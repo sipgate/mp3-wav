@@ -1,8 +1,9 @@
-package com.sipgate.mp3wav.mp3wav;
+package com.sipgate.mp3wav;
 
 import com.sun.media.sound.WaveFileWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import javax.sound.sampled.AudioFileFormat.Type;
@@ -14,17 +15,27 @@ public final class Converter {
 
 	private InputStream input;
 	private AudioFormat audioFormat;
+	private boolean close;
 
 	public Converter(InputStream input) {
+		this(input, false);
+	}
+
+	public Converter(InputStream input, boolean close) {
 		this.input = input;
+		this.close = close;
 	}
 
 	public static Converter convertFrom(InputStream input) {
-		return new Converter(input);
+		return new Converter(input, false);
 	}
 
-	public Converter withFormat(AudioFormat audioFormat) {
-		this.audioFormat = audioFormat;
+	public static Converter convertFrom(byte[] mp3Content) {
+		return new Converter(new ByteArrayInputStream(mp3Content), true);
+	}
+
+	public Converter withTargetFormat(AudioFormat targetAudioFormat) {
+		this.audioFormat = targetAudioFormat;
 		return this;
 	}
 
@@ -35,10 +46,32 @@ public final class Converter {
 			convert(input, rawOutputStream, getTargetFormat());
 
 			final byte[] rawResult = rawOutputStream.toByteArray();
-			final AudioInputStream audioInputStream = new AudioInputStream(new ByteArrayInputStream(rawResult), getTargetFormat(), rawResult.length);
+			final AudioInputStream audioInputStream = new AudioInputStream(new ByteArrayInputStream(rawResult),
+					getTargetFormat(), rawResult.length);
 			new WaveFileWriter().write(audioInputStream, Type.WAVE, output);
 		} catch (Exception e) {
 			throw new ConversionException(e);
+		} finally {
+			closeInput();
+		}
+	}
+
+	public byte[] toByteArray() {
+		try (final ByteArrayOutputStream output = new ByteArrayOutputStream()) {
+			to(output);
+			return output.toByteArray();
+		}  catch (IOException e) {
+			throw new ConversionException(e);
+		}
+	}
+
+	private void closeInput() {
+		if (this.close) {
+			try {
+				input.close();
+			} catch (IOException e) {
+				// Sad but true;
+			}
 		}
 	}
 
@@ -51,7 +84,8 @@ public final class Converter {
 			final AudioFormat convertFormat = getAudioFormat(sourceFormat);
 
 			try (
-					final AudioInputStream sourceStream = AudioSystem.getAudioInputStream(convertFormat, rawSourceStream);
+					final AudioInputStream sourceStream = AudioSystem
+							.getAudioInputStream(convertFormat, rawSourceStream);
 					final AudioInputStream convertStream = AudioSystem.getAudioInputStream(targetFormat, sourceStream);
 			) {
 				int read;

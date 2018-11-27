@@ -1,4 +1,4 @@
-package com.sipgate.mp3wav.mp3wav;
+package com.sipgate.mp3wav;
 
 public class ConversionException extends RuntimeException {
 	public ConversionException(Throwable cause) {
