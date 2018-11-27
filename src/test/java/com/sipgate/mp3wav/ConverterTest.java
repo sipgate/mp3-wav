@@ -1,4 +1,4 @@
-package de.jmens.mp3wav;
+package com.sipgate.mp3wav;
 
 import static com.sipgate.mp3wav.mp3wav.Converter.convertFrom;
 
