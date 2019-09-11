@@ -48,7 +48,7 @@ public final class Converter {
 			final byte[] rawResult = rawOutputStream.toByteArray();
 			final AudioInputStream audioInputStream = new AudioInputStream(new ByteArrayInputStream(rawResult),
 					getTargetFormat(), rawResult.length);
-			new WaveFileWriter().write(audioInputStream, Type.WAVE, output);
+			AudioSystem.write(audioInputStream, Type.WAVE, output);
 		} catch (Exception e) {
 			throw new ConversionException(e);
 		} finally {
