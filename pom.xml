@@ -7,7 +7,7 @@
   <packaging>jar</packaging>
 
   <name>mp3-wav</name>
-  <description>A simple in memory mp3 to wave converrer</description>
+  <description>A simple in memory mp3 to wave converter</description>
   <url>https://github.com/sipgate/mp3-wav</url>
 
   <licenses>
