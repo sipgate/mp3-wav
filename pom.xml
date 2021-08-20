@@ -3,7 +3,7 @@
 
   <groupId>com.sipgate</groupId>
   <artifactId>mp3-wav</artifactId>
-  <version>1.0.5-SNAPSHOT</version>
+  <version>1.0.3-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>mp3-wav</name>
