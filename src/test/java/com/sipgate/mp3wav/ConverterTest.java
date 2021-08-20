@@ -1,6 +1,8 @@
 package com.sipgate.mp3wav;
 
 
+import org.junit.jupiter.api.Test;
+
 import static com.sipgate.mp3wav.Converter.convertFrom;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -13,7 +15,6 @@ import java.nio.file.Paths;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
-import org.junit.Test;
 
 public class ConverterTest {
 

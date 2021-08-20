@@ -1,6 +1,5 @@
 package com.sipgate.mp3wav;
 
-import com.sun.media.sound.WaveFileWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
